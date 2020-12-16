@@ -5,17 +5,19 @@
 
 if exists('b:current_syntax') | finish | endif
 
-setlocal isi+=/,',+,-,?,!
+setlocal isi+=/,',`,+,-,?,!
 
-syn match spwComment ';.*' contains=spwParams,spwTodo
+syn match spwComment ';.*' contains=spwStackComment,spwTodo
 syn match spwNumber '\<-\=\d\+\>'
 syn match spwNumber "\<0[Xx]\x\+\>"
 syn match spwNumber "\<0[Bb][01]\+\>"
-syn match spwDefine '$\i\+'
+
+syn match  spwMacro '$\i\+'
+syn region spwMacroArg start='`' end='`'
 
 syn region spwString start='"' end='"'
 syn region spwString start="'" end="'"
-syn region spwParams start='\[' end='\]'
+syn region spwStackComment start='\[' end='\]'
 
 syn keyword spwStack push pop dup swap copy slide
 syn keyword spwFlow jump jz jn ret exit
@@ -36,15 +38,20 @@ hi link spwFunc Special
 hi link spwIO Type
 hi link spwImport Include
 hi link spwLabel Function
-hi link spwParams SpecialComment
+hi link spwMacroArg Special
 hi link spwNumber Number
 hi link spwStack Identifier
 hi link spwString String
 hi link spwTodo Todo
 
-" Highlight $ macros as bolded Number
-exec 'hi spwDefine cterm=bold gui=bold' .
-      \ ' guifg='   . synIDattr(synIDtrans(hlID('Number')), 'fg', 'gui') .
-      \ ' ctermfg=' . synIDattr(synIDtrans(hlID('Number')), 'fg', 'cterm')
+function! CribHighlighting(new, group, attrs)
+  let l:id = synIDtrans(hlID(a:group))
+  exec 'hi ' . a:new . ' cterm=' . a:attrs . ' gui=' . a:attrs .
+        \ ' ctermfg=' . synIDattr(l:id, 'fg', 'cterm') .
+        \ ' guifg='   . synIDattr(l:id, 'fg', 'gui')
+endfunction
+
+call CribHighlighting('spwMacro', 'Macro', 'bold')
+call CribHighlighting('spwStackComment', 'Comment', 'bold')
 
 let b:current_syntax = 'spitewaste'
