@@ -21,7 +21,7 @@ syn region spwStackComment start='\[' end='\]'
 
 syn keyword spwStack push pop dup swap copy slide
 syn keyword spwFlow jump jz jn ret exit
-syn keyword spwFunc map reduce select reject find times each minby maxby count
+syn keyword spwFunc map reduce select reject find times each minby maxby count all any none
 syn keyword spwNumber add sub mul div mod
 syn keyword spwIO ichr inum ochr onum load store
 syn keyword spwImport import
