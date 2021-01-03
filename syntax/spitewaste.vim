@@ -30,6 +30,7 @@ syn keyword spwTodo TODO XXX
 
 syn match spwLabel '\i\+:'
 syn match spwCall ':\i\+'
+syn match spwIO '[@^]-\=\d\+'
 
 hi link spwCall Define
 hi link spwComment Comment
