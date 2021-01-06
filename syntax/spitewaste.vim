@@ -26,6 +26,7 @@ syn keyword spwNumber add sub mul div mod
 syn keyword spwIO ichr inum ochr onum load store
 syn keyword spwImport import
 syn keyword spwCall call label
+syn keyword spwShell shell
 syn keyword spwTodo TODO XXX
 
 syn match spwLabel '\i\+:'
@@ -53,6 +54,7 @@ function! CribHighlighting(new, group, attrs)
 endfunction
 
 call CribHighlighting('spwMacro', 'Macro', 'bold')
+call CribHighlighting('spwShell', 'spwIO', 'bold')
 call CribHighlighting('spwStackComment', 'Comment', 'bold')
 
 let b:current_syntax = 'spitewaste'
