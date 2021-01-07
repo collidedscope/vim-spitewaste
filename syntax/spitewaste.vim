@@ -13,6 +13,7 @@ syn match spwNumber "\<0[Xx]\x\+\>"
 syn match spwNumber "\<0[Bb][01]\+\>"
 
 syn match  spwMacro '$\i\+'
+syn match  spwMacroStringify '#\i\+'
 syn region spwMacroArg start='`' end='`'
 
 syn region spwString start='"' end='"'
@@ -41,6 +42,7 @@ hi link spwIO Type
 hi link spwImport Include
 hi link spwLabel Function
 hi link spwMacroArg Special
+hi link spwMacroStringify Special
 hi link spwNumber Number
 hi link spwStack Identifier
 hi link spwString String
