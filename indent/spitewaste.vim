@@ -1,8 +1,3 @@
-" Vim indent file
-" Language:    Spitewaste (Whitespace assembly)
-" Author:      Collided Scope
-" Last Change: 20201212
-
 if exists('b:did_indent') | finish | endif
 let b:did_indent = 1
 
